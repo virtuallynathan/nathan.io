@@ -1,0 +1,25 @@
+BaseUrl= "https://nathan.io/"
+LanguageCode= "en-US"
+Title= "nathan.io"
+paginate = 5
+# DisqusShortname = "YOUR_SHORT_NAME_HERE"
+Copyright = "All rights reserved - 2015"
+canonifyurls = true
+
+[params]
+  description = "Random thoughts from an Internet Engineer"
+  cover = "images/cover.jpg"
+  author = "Nathan OWENS"
+  authorlocation = "Philadelphia, PA"
+  authorwebsite = "https://nathan.io/"
+  bio= "Internet Engineer at Comcast. Loves networking, servers, datacenters,   and writing code in Go."
+  logo = "images/logo.jpg"
+  # googleAnalyticsUserID = "UA-79101-12"
+  # Optional RSS-Link, if not provided it defaults to the standard index.xml
+  githubName = "virtuallynathan"
+  twitterName = "virtuallynathan"
+  # facebookName = ""
+  # set true if you are not proud of using Hugo (true will hide the footer note "Proudly published with HUGO.....")
+  hideHUGOSupport = false
+
+  theme = "casper"
