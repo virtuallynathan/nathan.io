@@ -1,38 +1,46 @@
-
 Port 22
 ListenAddress ::
 ListenAddress 0.0.0.0
 
 Protocol 2
+
+# Remove old weaker host keys
+# cd /etc/ssh
+# rm ssh_host_*key*
+# ssh-keygen -t ed25519 -f ssh_host_ed25519_key < /dev/null
+# ssh-keygen -t rsa -b 4096 -f ssh_host_rsa_key < /dev/null
+
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 
-UsePrivilegeSeparation yes
-
-# Logging
+# Logging:
 SyslogFacility AUTH
 LogLevel INFO
 
 # Authentication:
-LoginGraceTime 30
-PermitRootLogin no
 StrictModes yes
+PubkeyAuthentication yes
+UsePAM yes
+LoginGraceTime 30
 
+UsePrivilegeSeparation yes
+
+PermitRootLogin no
 ChallengeResponseAuthentication no
 PasswordAuthentication no
-PubkeyAuthentication yes
 RhostsRSAAuthentication no
 HostbasedAuthentication no
 PermitEmptyPasswords no
-UsePAM yes
 
 AuthorizedKeysFile	%h/.ssh/authorized_keys
 
-#Secure Secure Shell
+#Secure Secure Shell - https://stribika.github.io/2015/01/04/secure-secure-shell.html
+
 KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,umac-128@openssh.com
 
+# Create the ssh-user group with "sudo groupadd ssh-user", then add each ssh user to the group with "sudo usermod -a -G ssh-user <username>"
 AllowGroups ssh-user
 
 IgnoreRhosts yes
